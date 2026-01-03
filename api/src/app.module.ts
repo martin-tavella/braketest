@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TelemetryGateway } from './telemetry/telemetry.gateway';
 import { ConfigModule } from '@nestjs/config';
+import { TelemetryService } from './telemetry/telemetry.service';
 
 @Module({
   imports: [
@@ -8,6 +9,6 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
   ],
-  providers: [TelemetryGateway],
+  providers: [TelemetryGateway, TelemetryService],
 })
 export class AppModule {}
