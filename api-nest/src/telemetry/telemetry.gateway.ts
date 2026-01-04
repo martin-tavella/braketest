@@ -5,7 +5,6 @@ import {
   OnGatewayInit,
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
-import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
 import { TelemetryService } from './telemetry.service';
 

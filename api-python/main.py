@@ -11,10 +11,6 @@ if not os.path.exists(cache_dir):
 
 fastf1.Cache.enable_cache(cache_dir)
 
-@app.get("/")
-def test():
-    return {"message": "Hello World"}
-
 @app.get("/telemetry/{year}/{gp}/{driver}")
 def get_telemetry(year: int, gp: str, driver: str):
     session = fastf1.get_session(year, gp, "R")
@@ -31,11 +27,33 @@ def get_telemetry(year: int, gp: str, driver: str):
         "data": data
     }
 
-@app.get("/drivers/{year}/{gp}")
-def get_drivers(year: int, gp: str):
+
+@app.get("/session-info/{year}/{gp}")
+def get_session_info(year: int, gp: str):
     session = fastf1.get_session(year, gp, "R")
-    session.load(telemetry=False, laps=False, weather=False)
+    session.load(telemetry=False, laps=True, weather=False)
+    session_info = session.session_info
+    total_laps = session.total_laps
+
     drivers = []
     for driver_num in session.drivers:
-        drivers.append(session.get_driver(str(driver_num)))
-    return drivers
+        driver = session.get_driver(str(driver_num))
+        driver_dict = {
+            "DriverNumber": driver.DriverNumber,
+            "Abbreviation": driver.Abbreviation,
+            "TeamId": driver.TeamId,
+            "FullName": driver.FullName,
+            "TeamId": driver.TeamId,
+            "TeamName": driver.TeamName,
+            "CountryCode": driver.CountryCode,
+            "TeamColor": driver.TeamColor,
+        }
+        drivers.append(driver_dict)
+    
+    return {
+        "session_info": session_info,
+        "total_laps": total_laps,
+        "drivers": drivers
+    }
+        
+    
