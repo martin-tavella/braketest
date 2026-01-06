@@ -32,7 +32,7 @@ export default function Home() {
         </h1>
       </header>
       <main>
-        <Grid sessionData={sessionData} sessionDrivers={sessionDrivers} totalLaps={totalLaps}/>
+        <Grid sessionData={sessionData} sessionDrivers={sessionDrivers} totalLaps={totalLaps} year={year}/>
       </main>
     </div>
   );

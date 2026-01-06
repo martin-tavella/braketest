@@ -1,6 +1,6 @@
 import Driver from "./Driver";
 
-const Grid = ({ sessionData, sessionDrivers, totalLaps }) => {
+const Grid = ({ sessionData, sessionDrivers, totalLaps, year }) => {
   return (
     <div className="max-w-[80%] w-full border-3 rounded-xl border-gray-400 mx-auto">
       <div>
@@ -9,7 +9,7 @@ const Grid = ({ sessionData, sessionDrivers, totalLaps }) => {
       <div className="grid-cols-1 p-4 bg-black text-white">
         {
             sessionDrivers.map((driver, index) => {
-                return <Driver driverInfo={driver} key={index} />
+                return <Driver driverInfo={driver} key={index} year={year} />
             })
         }
       </div>

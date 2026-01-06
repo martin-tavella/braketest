@@ -7,12 +7,12 @@ export class TelemetryService {
 
   private pythonApiUrl = 'http://localhost:8000';
 
-  async getFastF1Data(year: number, gp: string, driver: string) {
+  async getLap1Data(year: number, gp: string) {
     try {
       const response = await axios.get(
-        `${this.pythonApiUrl}/telemetry/${year}/${gp}/${driver}`,
+        `${this.pythonApiUrl}/telemetry/lap1/${year}/${gp}`,
       );
-      return response.data.data;
+      return response.data;
     } catch (error) {
       console.error('Error llamando a la API de Python:', error.message);
       return [];

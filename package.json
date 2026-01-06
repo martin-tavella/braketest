@@ -1,0 +1,10 @@
+{
+  "name": "braketest-monorepo",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:python": "cd api-python && .\\venv\\Scripts\\activate && uvicorn main:app --reload --port 8000",
+    "dev:nest": "cd api-nest && npm run start:dev",
+    "dev:next": "cd web && npm run dev",
+    "start:all": "concurrently --kill-others \"npm run dev:python\" \"npm run dev:nest\" \"npm run dev:next\""
+  }
+}
